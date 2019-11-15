@@ -21,24 +21,12 @@
 		.imgs{
 			position: absolute;
 			top: 0;
-			left: 0;
+			left: -590px;
 
-			
-			
+			display:flex;
+			transition: 1s;
 
 
-		}
-		.imgs li{
-			position: absolute;
-			top: 0;
-			left: 0;
-			opacity: 0;
-			z-index: -1;
-			transition: 2s linear;
-		}
-		.imgs .show{
-			opacity: 1;
-			z-index: 0;
 		}
 		.imgs img{
 			display: block;	
@@ -95,7 +83,6 @@
 			border: 3px solid #fff;
 			margin: 0 2px;
 			cursor: pointer;
-			transition: 1s linear;
 		}
 		.dots .act{
 			background:red;
@@ -109,7 +96,7 @@
 <body>
 <div id="carousel01" class="box">
 	<ul class="imgs" style="left:0;">
-		<li class="show"><a href="#"><img src="images/1.jpg" alt="1"></a></li>
+		<li><a href="#"><img src="images/1.jpg" alt="1"></a></li>
 		<li><a href="#"><img src="images/2.jpg" alt="2"></a></li>
 		<li><a href="#"><img src="images/3.jpg" alt="3"></a></li>
 		<li><a href="#"><img src="images/4.jpg" alt="4"></a></li>
@@ -129,13 +116,11 @@
 	</ul>
 
 </div>
-<a href="index.html">上一个页面</a>
 <script >
 	//获取轮播图显示区域  编写思路；获取index的值，根据index值显示对应的图片和并设置按钮的特殊样式；
 	var box=document.getElementById('carousel01');
-	//图片列表quyu
-	var imgsBox=box.getElementsByClassName('imgs')[0];
-	var imgs=imgsBox.getElementsByTagName('li');
+	//图片列表
+	var imgs=box.getElementsByClassName('imgs')[0];
 	//左箭头
 	var arrowL=box.getElementsByClassName('left')[0];
 	//右箭头
@@ -145,19 +130,14 @@
 	//按钮列表
 	var btns=dots.getElementsByTagName('li');
 
-	
+	var imgWidth=590;//一fu图宽度
 	 //imgs.style.left="-1170px";
 	 var index=0;//当前显示的图片序号，0号开始，范围是【0，n-1】
 	var t=null;//定时器标识符
-	var s=10;//自动轮播的时间间隔（秒）；
+	var s=2;//自动轮播的时间间隔（秒）；
 	 var n=btns.length;//图片数量/按钮数量
 	 //index=2;
-	  function showImg(index){
-	  	for(var i=0;i<n;i++){
-	  		imgs[i].removeAttribute('class');
-	  	}
-	  	imgs[index].className='show';
-	  }
+	  function showImg(index){imgs.style.left=-1*index*imgWidth+'px';}
 	 //imgs.style.left=-1*2*imgWidth+'px';
 	 function showBtn(index){
 	 	for(var i=0;i<btns.length;i++){
@@ -210,7 +190,7 @@
 
 	 }
 	 box.onmouseout();//执行一侧mouseout操作；开启定时器；
-	 
+
 
 
 </script>
